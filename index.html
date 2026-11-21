@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marielena Urrutia | Desarrolladora de Software e IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  <!-- Font Awesome (iconos profesionales) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #0a0a14;
+      --bg-card: #14141f;
+      --border: #23232f;
+      --text: #e6e6f0;
+      --muted: #8b8ba0;
+      --accent: #7c5cff;
+      --accent-2: #00d4ff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(10, 10, 20, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .logo { font-weight: 800; font-size: 1.2rem; }
+    nav .logo span {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    nav ul { display: flex; gap: 2rem; list-style: none; }
+    nav ul a { color: var(--muted); font-size: .95rem; transition: color .2s; }
+    nav ul a:hover { color: var(--text); }
+    @media (max-width: 640px) { nav ul { gap: 1rem; font-size: .85rem; } }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 2rem 4rem;
+      max-width: 1100px; margin: 0 auto;
+      position: relative;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: 20%; right: 10%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(124,92,255,.25), transparent 70%);
+      filter: blur(60px); z-index: -1;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: 20%; left: 5%;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(0,212,255,.2), transparent 70%);
+      filter: blur(60px); z-index: -1;
+    }
+    .hero .greeting {
+      color: var(--accent-2); font-weight: 600;
+      margin-bottom: 1rem; letter-spacing: 1px;
+      display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      font-weight: 800; line-height: 1.1; margin-bottom: 1rem;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero p.subtitle { font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: var(--muted); max-width: 650px; margin-bottom: 2rem; }
+    .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      padding: .9rem 1.8rem; border-radius: 10px; font-weight: 600;
+      transition: transform .2s, box-shadow .2s;
+      display: inline-flex; align-items: center; gap: .6rem;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff; box-shadow: 0 8px 24px rgba(124,92,255,.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(124,92,255,.5); }
+    .btn-secondary {
+      border: 1px solid var(--border); color: var(--text); background: var(--bg-card);
+    }
+    .btn-secondary:hover { border-color: var(--accent); }
+    .hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; flex-wrap: wrap; }
+    .hero-stats div strong { display: block; font-size: 1.6rem; font-weight: 800; }
+    .hero-stats div span { color: var(--muted); font-size: .9rem; }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-title { font-size: 2rem; font-weight: 800; margin-bottom: .5rem; }
+    .section-sub { color: var(--muted); margin-bottom: 3rem; }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1rem;
+    }
+    .skill-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem 1rem; text-align: center;
+      transition: transform .2s, border-color .2s;
+    }
+    .skill-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .skill-card i { font-size: 2.5rem; margin-bottom: .5rem; display: block; }
+    .skill-card span { font-size: .85rem; color: var(--muted); }
+
+    /* FEATURED */
+    .featured-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;
+    }
+    @media (max-width: 768px) { .featured-card { grid-template-columns: 1fr; } }
+    .featured-card .tag {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .3rem .8rem; border-radius: 999px;
+      background: rgba(124,92,255,.15); color: var(--accent);
+      font-size: .8rem; font-weight: 600; margin-bottom: 1rem;
+    }
+    .featured-card h3 { font-size: 1.8rem; margin-bottom: .8rem; }
+    .featured-card p { color: var(--muted); margin-bottom: 1.5rem; }
+    .featured-preview {
+      background: linear-gradient(135deg, rgba(124,92,255,.2), rgba(0,212,255,.2));
+      border-radius: 12px; aspect-ratio: 16/10;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; color: var(--muted); overflow: hidden;
+    }
+    .featured-preview img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.5rem;
+      display: flex; flex-direction: column;
+      transition: transform .2s, border-color .2s;
+    }
+    .project-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .project-card h4 { font-size: 1.2rem; margin-bottom: .5rem; }
+    .project-card .desc { color: var(--muted); font-size: .9rem; flex: 1; margin-bottom: 1rem; }
+    .project-card .lang {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .8rem; padding: .2rem .7rem;
+      border-radius: 999px; background: rgba(0,212,255,.12); color: var(--accent-2);
+      margin-bottom: 1rem; align-self: flex-start;
+    }
+    .project-links { display: flex; gap: 1rem; font-size: .9rem; }
+    .project-links a {
+      color: var(--accent); font-weight: 600;
+      display: inline-flex; align-items: center; gap: .4rem;
+    }
+    .project-links a:hover { text-decoration: underline; }
+    .loading, .empty { color: var(--muted); text-align: center; grid-column: 1 / -1; }
+    .empty i { display: block; font-size: 2rem; margin-bottom: 1rem; color: var(--accent); }
+
+    /* CONTACT */
+    .contact-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 3rem; text-align: center;
+    }
+    .contact-card h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .contact-card p { color: var(--muted); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .contact-links a {
+      padding: .8rem 1.5rem; border-radius: 10px; background: var(--bg);
+      border: 1px solid var(--border); transition: border-color .2s, transform .2s;
+      display: inline-flex; align-items: center; gap: .6rem; font-weight: 600;
+    }
+    .contact-links a:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .contact-links a i { font-size: 1.1rem; }
+
+    footer {
+      text-align: center; padding: 2rem; color: var(--muted);
+      border-top: 1px solid var(--border); font-size: .9rem;
+    }
+    footer .heart { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Marielena<span>.dev</span></div>
+    <ul>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="greeting">
+      <i class="fa-regular fa-hand"></i> Hola, soy
+    </div>
+    <h1>Marielena Urrutia <span>Zavaleta</span></h1>
+    <p class="subtitle">
+      Estudiante de Ingeniería de Software con Inteligencia Artificial en SENATI.
+      Me apasiona crear soluciones que automaticen procesos y aporten valor real a las empresas.
+    </p>
+    <div class="cta-group">
+      <a href="#proyectos" class="btn btn-primary">
+        Ver proyectos <i class="fa-solid fa-arrow-right"></i>
+      </a>
+      <a href="#contacto" class="btn btn-secondary">
+        <i class="fa-regular fa-envelope"></i> Contactarme
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>5to</strong><span>Ciclo en SENATI</span></div>
+      <div><strong>2</strong><span>Prácticas formativas</span></div>
+      <div><strong>10+</strong><span>Tecnologías</span></div>
+    </div>
+  </header>
+
+  <section id="skills">
+    <h2 class="section-title">Tecnologías y habilidades</h2>
+    <p class="section-sub">Herramientas con las que he trabajado durante mi formación y prácticas.</p>
+    <div class="skills-grid">
+      <div class="skill-card"><i class="devicon-python-plain colored"></i><span>Python</span></div>
+      <div class="skill-card"><i class="devicon-java-plain colored"></i><span>Java</span></div>
+      <div class="skill-card"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
+      <div class="skill-card"><i class="devicon-php-plain colored"></i><span>PHP</span></div>
+      <div class="skill-card"><i class="devicon-html5-plain colored"></i><span>HTML5</span></div>
+      <div class="skill-card"><i class="devicon-css3-plain colored"></i><span>CSS3</span></div>
+      <div class="skill-card"><i class="devicon-mysql-plain colored"></i><span>SQL / MySQL</span></div>
+      <div class="skill-card"><i class="devicon-git-plain colored"></i><span>Git</span></div>
+      <div class="skill-card"><i class="devicon-linux-plain colored"></i><span>Linux</span></div>
+      <div class="skill-card"><i class="devicon-angularjs-plain colored"></i><span>AngularJS</span></div>
+      <div class="skill-card"><i class="devicon-laravel-plain colored"></i><span>Laravel</span></div>
+      <div class="skill-card"><i class="devicon-tensorflow-original colored"></i><span>ML / Deep Learning</span></div>
+    </div>
+  </section>
+
+  <section id="proyectos">
+    <h2 class="section-title">Proyecto destacado</h2>
+    <p class="section-sub">Mi proyecto más completo hasta ahora, desplegado y funcional.</p>
+
+    <div class="featured-card">
+      <div>
+        <span class="tag"><i class="fa-solid fa-star"></i> Destacado</span>
+        <h3>Study-Battle</h3>
+        <p>
+          Aplicación web interactiva para el aprendizaje gamificado. Desarrollada con enfoque en la
+          experiencia del usuario y desplegada en producción con Vercel.
+        </p>
+        <div class="project-links">
+          <a href="https://study-battle-frontend-alpha.vercel.app/" target="_blank">
+            <i class="fa-solid fa-globe"></i> Ver demo
+          </a>
+          <a href="https://github.com/YshinGit" target="_blank">
+            <i class="fa-solid fa-code"></i> Ver código
+          </a>
+        </div>
+      </div>
+      <div class="featured-preview">
+        <a href="https://study-battle-frontend-alpha.vercel.app/" target="_blank" style="width:100%;height:100%;">
+          <img src="https://api.microlink.io/?url=https%3A%2F%2Fstudy-battle-frontend-alpha.vercel.app%2F&screenshot=true&meta=false&embed=screenshot.url"
+               alt="Preview Study-Battle"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fa-solid fa-gamepad\'></i>';" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="otros-proyectos" style="padding-top: 0;">
+    <h2 class="section-title">Otros proyectos</h2>
+    <p class="section-sub">Repositorios públicos de mi GitHub.</p>
+    <div class="projects-grid" id="github-projects">
+      <div class="loading">Cargando proyectos...</div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="contact-card">
+      <h2>¿Trabajamos juntos?</h2>
+      <p>Estoy en búsqueda de oportunidades para aplicar mis conocimientos en desarrollo de software e inteligencia artificial.</p>
+      <div class="contact-links">
+        <a href="mailto:maryurrutia777@gmail.com">
+          <i class="fa-regular fa-envelope"></i> maryurrutia777@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/marielena-urrutia-zavaleta-91b878361/" target="_blank">
+          <i class="fa-brands fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://github.com/YshinGit" target="_blank">
+          <i class="fa-brands fa-github"></i> GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Marielena Urrutia Zavaleta · Hecho con <i class="fa-solid fa-heart heart"></i>
+  </footer>
+
+  <script>
+    async function cargarProyectos() {
+      const contenedor = document.getElementById('github-projects');
+      try {
+        const res = await fetch('https://api.github.com/users/YshinGit/repos?sort=updated&per_page=30');
+        if (!res.ok) throw new Error('Error API');
+        const repos = await res.json();
+
+        const filtrados = repos.filter(r =>
+          !r.fork &&
+          !r.name.toLowerCase().includes('yshingit') &&
+          r.name.toLowerCase() !== 'study-battle'
+        );
+
+        if (filtrados.length === 0) {
+          contenedor.innerHTML = `
+            <div class="empty">
+              <i class="fa-solid fa-seedling"></i>
+              Actualmente estoy trabajando en nuevos proyectos.
+              Mientras tanto, puedes ver mi progreso en
+              <a href="https://github.com/YshinGit" target="_blank" style="color:var(--accent)">GitHub</a>.
+            </div>`;
+          return;
+        }
+
+        contenedor.innerHTML = filtrados.map(repo => {
+          const desc = repo.description || 'Proyecto personal desarrollado como parte de mi formación.';
+          const lang = repo.language ? `<span class="lang"><i class="fa-solid fa-circle" style="font-size:.5rem;"></i> ${repo.language}</span>` : '';
+          const demo = repo.homepage ? `<a href="${repo.homepage}" target="_blank"><i class="fa-solid fa-globe"></i> Demo</a>` : '';
+          return `
+            <div class="project-card">
+              <h4>${repo.name}</h4>
+              ${lang}
+              <p class="desc">${desc}</p>
+              <div class="project-links">
+                <a href="${repo.html_url}" target="_blank"><i class="fa-solid fa-code"></i> Código</a>
+                ${demo}
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (e) {
+        contenedor.innerHTML = `
+          <div class="empty">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            No se pudieron cargar los proyectos automáticamente.
+            <a href="https://github.com/YshinGit" target="_blank" style="color:var(--accent)">Ver en GitHub →</a>
+          </div>`;
+      }
+    }
+    cargarProyectos();
+  </script>
+</body>
+</html>
